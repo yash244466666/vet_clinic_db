@@ -89,3 +89,11 @@ explain analyse SELECT COUNT(*) FROM visits where animal_id = 2;
 CREATE INDEX visits_vet_id ON visits(vet_id);
 EXPLAIN ANALYSE SELECT * FROM visits WHERE animal_id = 2;
 
+-- Querie :SELECT * FROM owners where email = 'owner_18327@mail.com';
+-- Before
+EXPLAIN ANALYSE SELECT * FROM owners WHERE email ='owner_18327@mail.com';
+SELECT FROM owners WHERE email='owner_18327@mail.com';
+
+-- after
+CREATE INDEX owners_email ON owners(email);
+EXPLAIN ANALYSE SELECT * FROM owners WHERE email ='owner_18327@mail.com';
