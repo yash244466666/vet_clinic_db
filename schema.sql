@@ -74,16 +74,16 @@ SELECT * FROM owners where email = 'owner_18327@mail.com';
 -- Use EXPLAIN ANALYZE on the previous queries to check what is happening. Take screenshots of them -
 
 -- before improve
-EXPLAIN ANALYSE SELECT COUNT(*) FROM visits where animal_id = 4;
-SELECT COUNT(*) FROM visits where animal_id = 4;
+EXPLAIN ANALYSE SELECT COUNT(*) FROM visits where animal_id = 4 ORDER BY COUNT(*) ASC;
+SELECT COUNT(*) FROM visits WHERE animal_id = 4 ORDER BY COUNT(*) ASC;
 
 -- after improve
 CREATE INDEX visits_animal_id ON visits(animal_id);
-EXPLAIN ANALYSE SELECT COUNT(*) FROM visits WHERE animal_id = 4;
+EXPLAIN ANALYSE SELECT COUNT(*) FROM visits WHERE animal_id = 4 ORDER BY COUNT(*) ASC;
 
 -- SELECT * FROM visits where vet_id = 2; Before improve
 SELECT * FROM visits WHERE vet_id = 2;
-explain analyse SELECT COUNT(*) FROM visits where animal_id = 2;
+explain analyse SELECT COUNT(*) FROM visits where animal_id = 2 ORDER BY COUNT(*) ASC;
 
 -- Querie : SELECT * FROM visits where vet_id = 2; After improve
 CREATE INDEX visits_vet_id ON visits(vet_id);
@@ -92,8 +92,8 @@ EXPLAIN ANALYSE SELECT * FROM visits WHERE animal_id = 2;
 -- Querie :SELECT * FROM owners where email = 'owner_18327@mail.com';
 -- Before
 EXPLAIN ANALYSE SELECT * FROM owners WHERE email ='owner_18327@mail.com';
-SELECT FROM owners WHERE email='owner_18327@mail.com';
+SELECT FROM owners WHERE email='owner_18327@mail.com' ORDER BY email ASC;
 
 -- after
 CREATE INDEX owners_email ON owners(email);
-EXPLAIN ANALYSE SELECT * FROM owners WHERE email ='owner_18327@mail.com';
+EXPLAIN ANALYSE SELECT * FROM owners WHERE email ='owner_18327@mail.com' ORDER BY email ASC;
