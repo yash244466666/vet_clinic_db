@@ -44,18 +44,3 @@ CREATE TABLE medical_histories_treatments (
   FOREIGN KEY (medical_history_id) REFERENCES medical_histories(id),
   FOREIGN KEY (treatment_id) REFERENCES treatments(id)
 );
-
--- add indexes to foreign keys
-ALTER TABLE medical_histories
-ADD INDEX (patient_id);
-
-ALTER TABLE invoice_items
-ADD INDEX (invoice_id),
-ADD INDEX (treatment_id);
-
-ALTER TABLE invoices
-ADD INDEX (medical_history_id);
-
-ALTER TABLE medical_histories_treatments
-ADD INDEX (medical_history_id),
-ADD INDEX (treatment_id);
